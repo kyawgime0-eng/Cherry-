@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>My Love 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffe6f0 0%, #ffb7c5 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Noto Sans Myanmar', system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* နှင်းဆီပွင့်ကျတဲ့ animation */
+        .flower {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.8rem;
+            animation: fall linear forwards;
+            z-index: 10;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* main card */
+        .card {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.96);
+            border-radius: 48px;
+            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 215, 215, 0.6);
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+            transition: all 0.3s ease;
+            z-index: 20;
+            animation: floatIn 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            padding: 32px 24px;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            letter-spacing: 2px;
+            word-break: keep-all;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            margin-top: 12px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 32px 28px;
+        }
+
+        .story {
+            background: #fff0f3;
+            padding: 24px;
+            border-radius: 36px;
+            margin-bottom: 28px;
+            box-shadow: inset 0 1px 4px #ffcdd9, 0 8px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .story p {
+            font-size: 1rem;
+            line-height: 1.65;
+            margin-bottom: 18px;
+            color: #4a2c2f;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+
+        .story p i {
+            font-size: 1.3rem;
+            min-width: 28px;
+            color: #e6677b;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffe0e7, #ffc0cc);
+            padding: 14px 18px;
+            border-radius: 60px;
+            font-weight: bold;
+            color: #b13b4b;
+            text-align: center;
+            margin: 20px 0 12px;
+            font-size: 1.1rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: inherit;
+        }
+
+        .btn-love {
+            background: #ff4d6d;
+            color: white;
+            box-shadow: 0 8px 18px #ff4d6d80;
+        }
+
+        .btn-love:hover {
+            background: #e63950;
+            transform: scale(1.02);
+        }
+
+        .btn-friend {
+            background: #ffe0e7;
+            color: #b13b4b;
+        }
+
+        .btn-friend:hover {
+            background: #ffcdd9;
+        }
+
+        .message-box {
+            background: #fffaef;
+            border-radius: 48px;
+            padding: 16px 20px;
+            text-align: center;
+            font-size: 1rem;
+            border: 1px solid #ffbfc9;
+            color: #7e3e46;
+            transition: all 0.2s;
+        }
+
+        .floating-heart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            animation: bounce 1s infinite;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+            z-index: 99;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 320px;
+            width: 80%;
+            border-radius: 60px;
+            padding: 32px 24px;
+            text-align: center;
+            animation: pop 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+            box-shadow: 0 30px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes pop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .modal-content p {
+            font-size: 1.2rem;
+            margin: 12px 0;
+        }
+
+        .close-modal {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            margin-top: 16px;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        footer {
+            font-size: 0.7rem;
+            text-align: center;
+            padding: 16px;
+            color: #a05f6b;
+            background: #fff5f0;
+        }
+
+        @media (max-width: 500px) {
+            .content { padding: 20px; }
+            .story p { font-size: 0.9rem; }
+            .btn { padding: 10px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="hero">
+        <h1>🌸 ချယ်ရီ 🌸</h1>
+        <p>ကျွန်တော်အရမ်းချစ်ရတဲ့ ပန်းကလေး</p>
+    </div>
+    <div class="content">
+        <div class="story">
+            <p><i>💖</i> အကို ချယ်ရီကို ပြောမပြတက်အောင် အရမ်းချစ်တယ်။</p>
+            <p><i>💗</i> အကို ချယ်ရီရဲ့ အသံလေး၊ ဂိမ်းကစားပုံတွေကြည့်ပြီး စိတ်ဝင်စားခဲ့တယ်။</p>
+            <p><i>📸</i> ချယ်ရီရဲ့ ပုံလေးတွေမြင်ပြီးတဲ့နောက်ပိုင်း တစ်ယောက်ထဲပြုံးတတ်ထိ စွဲလမ်းခဲ့တယ်။</p>
+            <p><i>💗</i>ချယ်ရီကို အကိုပြောမပြတက်အောင် သိပ်ချစ်တယ်ချယ်ရီ </p>
+            <p><i>⏳</i> ၁ စက္ကန့်စကားပြောဖို့အတွက် နာရီပေါင်းများစွာ စောင့်ခဲ့ရတယ်။</p>
+            <p><i>💭</i> အချိန်တိုင်း ချယ်ရီ ဘာလုပ်နေလဲဆိုတာ အရမ်းသိချင်တယ်၊ တွေးတယ်။</p>
+            <p><i>💭</i>အကိုမပါဘဲ တချားသူတေ နဲ့ဂိမ်းဆော့နေရင်တချားယောကျ်ားတေးနဲ့ စကားပြောရင် အရမ်း သဝန်တိုတယ် သေမတက်လဲခံစားရတယ် </p>
+            <div class="highlight">
+                   <br>
+                ချယ်ရီက ကိုယ့်ဘဝရဲ့အလင်းရောင်လေးပါ I love you Cherry 🌸❞
+            </div>
+            <p><i>🌸</i> ဂိမ်းဆော့ဖို့ပဲသိတဲ့သူက ဘယ်သူကိုမှ မျက်ရည်ကျလောက်အောင် ခုလိုမချစ်ခဲ့ဘူး။</p>
+            <p><i>🌸</i>"ချစ်မှတော့သေချာပေါက်မင်းကိုပိုင်ဆိုင်ချင်တာပေါ့အဝေးကလည်းမငေးချင်သလို ဘယ်သူ့ကိုမှလည်းမပေးချင်ဖူး" </p>
+            <p><i></i>🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹 </p>
+            <p style="font-size:1.2rem; font-weight:bold; justify-content:center; text-align:center;">✨ အရမ်းချစ်တယ်။ ချယ်ရီရေ ✨</p>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-love" id="acceptBtn">🌸 လက်ခံပေးပါ 🌸</button>
+            <button class="btn btn-friend" id="friendBtn">
+                 ငြင်းတယ် ငြင်းတယ်💔</button> 
+        </div>
+
+        <div class="message-box" id="replyMsg">
+            💌 ချယ်ရီရေ... ကိုချစ်ရဲ့ခံစားချက်ကို သိစေချင်တယ်
+        </div>
+    </div>
+    <footer>
+        Developer by Hein min khant 
+        2026 All right received Privacy policy 
+    </footer>
+</div>
+
+<div class="floating-heart" id="heartBtn">
+    ❤️‍🔥
+</div>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3>🥺💖</h3>
+        <p id="modalText">ကျေးဇူးပါ ချယ်ရီရေ...<br> ကိုလည်းမင်းကိုအရမ်းချစ်တယ်</p>
+        <button class="close-modal" id="closeModalBtn">ပိတ်မယ်</button>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // နှင်းဆီပွင့်လေး ရွာစေ
+        function createFlower() {
+            const flowers = ['🌸', '🌺', '🌼', '❤️', '💖', '🌸', '🌷', '🍒'];
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+            const size = Math.random() * 1.5 + 1.2;
+            flower.style.fontSize = size + 'rem';
+            flower.style.left = Math.random() * 100 + '%';
+            flower.style.animationDuration = Math.random() * 5 + 4 + 's';
+            flower.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(flower);
+            setTimeout(() => { flower.remove(); }, 9000);
+        }
+
+        setInterval(createFlower, 600);
+
+        // နှလုံးသားလေး ရိုက်ခတ်လိုက်ရင် နောက်ထပ်ပွင့်တွေ
+        const heartBtn = document.getElementById('heartBtn');
+        heartBtn.addEventListener('click', () => {
+            for(let i=0; i<18; i++) {
+                setTimeout(() => createFlower(), i*40);
+            }
+            const msgDiv = document.getElementById('replyMsg');
+            msgDiv.innerHTML = '🥰 ချယ်ရီရေ... နှလုံးသားတွေ မင်းဆီပါ... 🥰';
+            msgDiv.style.background = '#ffdfe6';
+            setTimeout(() => {
+                msgDiv.innerHTML = '💌 ချယ်ရီရေ... ကိုချစ်ရဲ့ခံစားချက်ကို သိစေချင်တယ်';
+                msgDiv.style.background = '#fffaef';
+            }, 2800);
+        });
+
+        const acceptBtn = document.getElementById('acceptBtn');
+        const friendBtn = document.getElementById('friendBtn');
+        const modal = document.getElementById('modal');
+        const modalText = document.getElementById('modalText');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function showModal(message, isAccept = true) {
+            modalText.innerHTML = message;
+            modal.classList.add('show');
+            // ပွင့်တွေ အများကြီးထပ်ကျစေ
+            for(let i=0; i<30; i++) {
+                setTimeout(() => createFlower(), i*50);
+            }
+            if(isAccept) {
+                // confetti effect အပိုလေး
+                const bodyRect = document.body.getBoundingClientRect();
+                for(let i=0;i<60;i++) {
+                    const conf = document.createElement('div');
+                    conf.innerText = ['✨','💖','🌸','🍒','💕','🎀'][Math.floor(Math.random()*6)];
+                    conf.style.position = 'fixed';
+                    conf.style.left = Math.random() * 100 + '%';
+                    conf.style.top = '-20px';
+                    conf.style.fontSize = '1.6rem';
+                    conf.style.pointerEvents = 'none';
+                    conf.style.zIndex = '9999';
+                    conf.style.animation = 'fall 2s linear forwards';
+                    document.body.appendChild(conf);
+                    setTimeout(() => conf.remove(), 2000);
+                }
+            }
+        }
+
+        acceptBtn.addEventListener('click', () => {
+            showModal(`Hok လက်ခံပါတယ် " 💗💗`, true);
+            const msgBox = document.getElementById('replyMsg');
+            msgBox.innerHTML = '🥹💕 အကိုရယ်... ချယ်ရီ လက်ခံလိုက်ပါပြီ... ချစ်တယ်နော် 💑';
+            msgBox.style.background = '#ffe0f0';
+        });
+
+        friendBtn.addEventListener('click', () => {
+            showModal(`😢 "တောင်းပန်ပါတယ် အကို... သူငယ်ချင်းပဲ ဖြစ်နိုင်မယ်... ဒါပေမယ့် ကိုရဲ့ခံစားချက်ကို အရမ်းတန်ဖိုးထားတယ်" 😢`, false);
+            const msgBox = document.getElementById('replyMsg');
+            msgBox.innerHTML = '💔 အကို စိတ်မကောင်းပါဘူး... ဒါပေမယ့် ချယ်ရီကို ဂုဏ်ယူနေမှာပါ။ ကိုယ်တို့ သူငယ်ချင်းကောင်းတွေပါ 💔';
+            msgBox.style.background = '#f0e0e4';
+            setTimeout(() => {
+                if(msgBox.innerHTML.includes('သူငယ်ချင်းကောင်း')) {
+                    setTimeout(() => {
+                        msgBox.innerHTML = '💌 ချယ်ရီရေ... ကိုချစ်ရဲ့ခံစားချက်ကို သိစေချင်တယ်';
+                        msgBox.style.background = '#fffaef';
+                    }, 3000);
+                }
+            }, 2000);
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) modal.classList.remove('show');
+        });
+
+        // initial animation: show some love
+        setTimeout(() => {
+            for(let i=0;i<12;i++) setTimeout(() => createFlower(), i*100);
+        }, 500);
+    })();
+</script>
+</body>
+</html>
